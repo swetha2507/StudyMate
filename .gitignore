@@ -1,0 +1,28 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+
+# --- Virtual Environments ---
+venv/
+env/
+.venv/
+backend/venv/
+
+# --- Data & Datasets ---
+data/*
+!data/README.md        # optional: keep placeholder or instructions
+
+# --- OS / Editor Files ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# --- Build / Packaging ---
+*.egg-info/
+dist/
+build/
