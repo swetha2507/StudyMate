@@ -1,0 +1,7 @@
+Capstone Project Guidelines
+Each student must work in a team of 3-5 members to design and implement a 
+technology-driven solution that addresses a real-world problem.
+
+Projects should demonstrate clear use of data analysis, system design, and presentation skills. 
+Final presentations must include a technical demo and a short reflective summary. 
+All code must be documented and stored in a public GitHub repository.

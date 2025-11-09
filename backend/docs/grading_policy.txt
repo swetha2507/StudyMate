@@ -1,0 +1,11 @@
+Course Grading Policy
+Late submissions are accepted up to 48 hours past the due date with a 10% deduction. 
+Assignments submitted later than this window will not be graded. 
+Make-up exams will be offered only for documented emergencies.
+
+Final grades are based on the following weights:
+- Assignments: 40%
+- Quizzes: 20%
+- Midterm Exam: 20%
+- Final Project: 20%
+Participation may be considered when determining borderline grades.

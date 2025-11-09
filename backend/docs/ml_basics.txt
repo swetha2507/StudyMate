@@ -1,0 +1,9 @@
+Machine Learning Basics
+Machine learning is a subset of artificial intelligence focused on building 
+algorithms that learn patterns from data. 
+
+Supervised learning involves training models with labeled data, while unsupervised 
+learning identifies patterns without explicit labels. Popular algorithms include 
+linear regression, decision trees, and neural networks.
+
+Key evaluation metrics include accuracy, precision, recall, and F1-score.
