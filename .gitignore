@@ -15,6 +15,7 @@ backend/venv/
 data/*
 !data/README.md        # optional: keep placeholder or instructions
 backend/learningq_train.jsonl
+backend/learningq_train_instruct.jsonl
 
 # --- OS / Editor Files ---
 .DS_Store
