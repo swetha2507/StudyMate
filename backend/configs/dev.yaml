@@ -1,7 +1,15 @@
-generator:
-  model_path: "outputs/phi3-learningq/merged"
-  max_new_tokens: 512
-  temperature: 0.2
+generators:
+  qgen:
+    provider: local
+    model_path: "outputs/phi3-learningq/merged"
+    max_new_tokens: 512
+    temperature: 0.0
+
+  answer:
+    provider: openai
+    openai_model: "gpt-4o-mini"
+    max_new_tokens: 320
+    temperature: 0.0
 
 retrieval:
   index_path: "./data/index"
