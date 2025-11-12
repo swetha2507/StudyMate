@@ -1,0 +1,14 @@
+:root {
+  --bg: #0f1115;
+  --panel: #171a21;
+  --text: #e9edf2;
+  --muted: #9aa3af;
+  --border: #232836;
+  --blue: #3a7bd5;
+  --green: #37b26c;
+  --accent: var(--blue);
+  --radius: 12px;
+  --gap: 12px;
+}
+
+.mode-qgen { --accent: var(--green); }

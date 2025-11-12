@@ -11,6 +11,13 @@ generators:
     max_new_tokens: 320
     temperature: 0.0
 
+generator:
+  model_path: outputs/phi3-learningq/merged     # path to your HF model or local dir
+  device: auto                  # "cuda" | "mps" | "cpu" | "auto"
+  torch_dtype: bfloat16         # or float16/float32 if you prefer
+  max_new_tokens: 512
+  temperature: 0.7
+
 retrieval:
   index_path: "./data/index"
   embed_model: "sentence-transformers/all-MiniLM-L6-v2"

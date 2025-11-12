@@ -53,6 +53,6 @@ async def qgen_file(req: QGenFileReq):
 
 DOCS_DIR = Path("backend/docs")
 
-@app.get("/docs")
-def list_docs():
-    return {"items": sorted([str(p) for p in DOCS_DIR.glob('**/*') if p.is_file()])}
+@app.get("/files")
+def list_files():
+    return {"items": sorted([str(p) for p in DOCS_DIR.glob("**/*") if p.is_file()])}
