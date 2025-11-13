@@ -1,19 +1,27 @@
 import { useMemo, useState } from "react";
 
+function fileName(p: string) {
+  const parts = p.split("/");
+  return parts[parts.length - 1] || p;
+}
+
 type Props = {
   open: boolean;
   docs: string[];
+  // kept for API compatibility, not used in this UI
   mode: "ask" | "qgen";
   selected: string[];
   onToggleFile: (path: string) => void;
   onClose: () => void;
 };
 
-export default function Sidebar({ open, docs, mode, selected, onToggleFile, onClose }: Props) {
+export default function Sidebar({ open, docs, onClose }: Props) {
   const [q, setQ] = useState("");
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
-    return s ? docs.filter(d => d.toLowerCase().includes(s)) : docs;
+    return s
+      ? docs.filter(d => fileName(d).toLowerCase().includes(s))
+      : docs;
   }, [q, docs]);
 
   return (
@@ -29,26 +37,13 @@ export default function Sidebar({ open, docs, mode, selected, onToggleFile, onCl
         onChange={e => setQ(e.target.value)}
       />
       <div className="doc-list">
-        {filtered.map(p => {
-          const isSel = selected.includes(p);
-          return (
-            <div key={p} className="doc-row">
-              <span className="doc-path" title={p}>{p}</span>
-              {mode === "qgen" && (
-                <input
-                  type="checkbox"
-                  checked={isSel}
-                  onChange={() => onToggleFile(p)}
-                  aria-label={`Select ${p}`}
-                />
-              )}
-            </div>
-          );
-        })}
+        {filtered.map(p => (
+          <div key={p} className="doc-row">
+            <span className="doc-path" title={p}>{fileName(p)}</span>
+          </div>
+        ))}
       </div>
-      <div className="sidebar-foot">
-        <span>{filtered.length} files</span>
-      </div>
+      <div className="sidebar-foot"><span>{filtered.length} files</span></div>
     </aside>
   );
 }

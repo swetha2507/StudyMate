@@ -1,19 +1,15 @@
-type Props = { onHamburger: () => void; mode: "ask" | "qgen"; onModeChange: (m: "ask" | "qgen") => void; };
-export default function Header({ onHamburger, mode, onModeChange }: Props) {
+type Props = {
+  onHamburger: () => void;
+  onToggleTheme: () => void;
+  themeLabel: string;
+};
+
+export default function Header({ onHamburger, onToggleTheme, themeLabel }: Props) {
   return (
-    <header className="hdr">
+    <header className="hdr" style={{ display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 12 }}>
       <button className="icon-btn" onClick={onHamburger} aria-label="Toggle sidebar">☰</button>
       <div className="hdr-title">Study UI</div>
-      <div className="mode-toggle">
-        <button
-          className={`pill ${mode === "ask" ? "active" : ""}`}
-          onClick={() => onModeChange("ask")}
-        >Ask</button>
-        <button
-          className={`pill ${mode === "qgen" ? "active" : ""}`}
-          onClick={() => onModeChange("qgen")}
-        >QGen</button>
-      </div>
+      <button className="icon-btn" onClick={onToggleTheme} aria-label="Toggle theme">{themeLabel}</button>
     </header>
   );
 }
