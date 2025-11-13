@@ -2,7 +2,7 @@ import os, time, logging
 from typing import Dict
 import torch
 from datasets import load_dataset
-from transformers import (AutoTokenizer, Trainer, TrainingArguments)
+from transformers import (AutoTokenizer, Trainer, TrainingArguments, AutoModelForCausalLM)
 from peft import AutoPeftModelForCausalLM
 
 # Try bitsandbytes if available + CUDA
@@ -101,7 +101,7 @@ def main():
         )
 
     logger.info("Loading base model…")
-    model = AutoModelForCausalLM.from_pretrained(
+    base_model = AutoModelForCausalLM.from_pretrained(
         BASE_MODEL,
         device_map="auto",
         torch_dtype=torch.bfloat16 if torch.cuda.is_available() else "auto",
@@ -109,11 +109,15 @@ def main():
     )
 
     lora_cfg = LoraConfig(
-        r=16, lora_alpha=32, lora_dropout=0.05, bias="none",
+        r=16,
+        lora_alpha=32,
+        lora_dropout=0.05,
+        bias="none",
         task_type="CAUSAL_LM",
-        target_modules=["q_proj","k_proj","v_proj","o_proj"],
+        target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
     )
-    model = get_peft_model(model, lora_cfg)
+
+    model = get_peft_model(base_model, lora_cfg)
 
     args = TrainingArguments(
         output_dir=ADAPTER_DIR,
