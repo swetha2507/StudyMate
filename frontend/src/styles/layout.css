@@ -534,27 +534,28 @@
   width: 100%;
   height: 100%;
   border-radius: 28px;
-  backface-visibility: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 18px;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-/* FRONT face stays normal */
 .fc-front {
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
-  color: #ffffff;
+  color: #4a3729;
+  z-index: 2;
 }
+/* 
+.fc-front .flashcard-body {
+  color: #4a3729 !important;
+} */
 
-
-.fc-back:hover {
-  background: #e78a00;
-  transform: translateY(-1px);
-}
-
-.fc-back:active {
-  transform: scale(0.95);
+.fc-back {
+  background: #fffaf2;
+  color: #3f2d20;
 }
 
 
@@ -637,7 +638,6 @@
   padding: 12px;
   line-height: 1.5;
   font-size: 17px;
-  color: inherit;   /* or just remove the color line entirely */
 }
 
 

@@ -1,4 +1,4 @@
-Use only the context
+Use only the information from the context below.
 
 Question:
 {{ query }}
@@ -7,6 +7,10 @@ Context:
 {{ context }}
 
 Instructions:
-- Answer concisely.
-- After each sentence, include supporting IDs like [Pid].
-- Do not invent content.
+- Answer in clear, well-structured sentences with natural line breaks.
+- Cite sources using readable filenames from the context.
+  Example: [Source: academic_policy.txt]
+- If multiple parts of the answer come from different files, list each citation separately.
+- Do NOT use numeric or hashed IDs like [Pid], [P01], etc.
+- Do not invent any information not present in the context.
+- Keep the answer concise but helpful.

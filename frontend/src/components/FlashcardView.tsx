@@ -25,7 +25,8 @@ export default function FlashcardView({
     setFlipped(false);
     setIndex((i) => (i > 0 ? i - 1 : 0));
   }
-
+  console.log("FLASHCARD DATA:", card);
+  
   return (
     <div className="fc-page">
 
