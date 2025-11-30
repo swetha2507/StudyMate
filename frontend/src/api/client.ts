@@ -3,9 +3,17 @@ const BASE = "http://localhost:8080";
 export async function fetchDocs(): Promise<string[]> {
   const res = await fetch(`${BASE}/files`);
   if (!res.ok) throw new Error("Failed to load docs");
+
   const data = await res.json();
-  return data.items as string[];
+  console.log("data", data)
+
+  const pdfs = (data.items as string[]).filter((path) =>
+    path.toLowerCase().endsWith(".txt")
+  );
+
+  return pdfs;
 }
+
 
 export async function postAsk(payload: { user_id?: string | null; query: string }) {
   const res = await fetch(`${BASE}/ask`, {

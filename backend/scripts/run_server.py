@@ -3,8 +3,11 @@ from pydantic import BaseModel
 from pathlib import Path
 from fastapi.middleware.cors import CORSMiddleware
 import yaml
+from fastapi import UploadFile, File, HTTPException
+import shutil
 from backend.graph.build import build_graph
 from backend.services.generate import generate_covered_questions
+
 
 app = FastAPI()
 graph = build_graph()
@@ -56,3 +59,20 @@ DOCS_DIR = Path("backend/docs")
 @app.get("/files")
 def list_files():
     return {"items": sorted([str(p) for p in DOCS_DIR.glob("**/*") if p.is_file()])}
+
+@app.post("/upload")
+async def upload_file(file: UploadFile = File(...)):
+    # Validate extensions
+    allowed = {".pdf", ".txt"}
+    suffix = Path(file.filename).suffix.lower()
+
+    if suffix not in allowed:
+        raise HTTPException(status_code=400, detail="Unsupported file type")
+
+    # Save file
+    dest = DOCS_DIR / file.filename
+
+    with dest.open("wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    return {"status": "success", "filename": file.filename}

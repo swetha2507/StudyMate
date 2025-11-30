@@ -1,22 +1,29 @@
 :root {
-  /* light */
-  --bg: #f6f7fb;          /* softer page bg */
-  --panel: #ffffff;       /* cards/panels */
-  --text: #0f1115;
-  --muted: #556078;
-  --border: #e7e9f0;
-  --accent: #3a7bd5;
-  --accent-2: #37b26c;
-  --radius: 12px;
-  --gap: 12px;
-  --shadow: 0 8px 22px rgba(16,24,40,0.08);
+  /* Warm feminine palette */
+  --bg: #f7f5f2;                 /* warm grey */
+  --panel: #ffffff;              /* clean white cards */
+  --text: #2b2b2b;               /* deep charcoal */
+  --muted: #7a7a7a;              /* soft muted text */
+  --border: #f0e6d6;             /* warm beige border */
+  --accent: #ff8a00;             /* orange (primary) */
+  --accent-2: #d4a857;           /* gold (secondary) */
+
+  /* UI feel */
+  --radius: 16px;
+  --gap: 14px;
+  --shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
 }
+
 :root.theme-dark {
   --bg: #0c0f14;
-  --panel: #12161d;
+  --panel: #151a22;
   --text: #e9edf2;
   --muted: #9aa3af;
-  --border: #1f2633;
-  --shadow: 0 10px 28px rgba(0,0,0,0.35);
+  --border: #232833;
+  --accent: #ff9c33;
+  --shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
 }
-:root.mode-qgen { --accent: var(--accent-2); }
+
+:root.mode-qgen {
+  --accent: var(--accent-2);
+}

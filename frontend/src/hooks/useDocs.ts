@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { fetchDocs } from "../api/client";
 
 export function useDocs() {
@@ -6,14 +6,21 @@ export function useDocs() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    let mounted = true;
+  // --- New: refresh function ---
+  const refreshDocs = useCallback(() => {
+    setLoading(true);
+    setError(null);
+
     fetchDocs()
-      .then(items => mounted && setDocs(items))
-      .catch(e => mounted && setError(e.message))
-      .finally(() => mounted && setLoading(false));
-    return () => { mounted = false; };
+      .then(items => setDocs(items))
+      .catch(err => setError(err.message))
+      .finally(() => setLoading(false));
   }, []);
 
-  return { docs, loading, error };
+  // Initial load
+  useEffect(() => {
+    refreshDocs();
+  }, [refreshDocs]);
+
+  return { docs, loading, error, refreshDocs };
 }
