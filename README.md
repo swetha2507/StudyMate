@@ -4,7 +4,7 @@ StudyMate is an AI-driven study companion built to help students reduce decision
 
 ---
 
-## Why This Project Exists
+## 1. Why This Project Exists
 Students often spend more time deciding what to study than studying. Deadlines, scattered notes, and unclear priorities create unnecessary friction.
 
 StudyMate solves this by:
@@ -13,9 +13,17 @@ StudyMate solves this by:
 
 The goal is a study system that feels supportive, predictable, and actually useful.
 
+## 2. High-Level Architecture Diagram
+
+A high-level system overview is shown below:
+
+![StudyMate Architecture](assets/StudyMate_Architecture.png)
+
+This diagram represents the core flow between the frontend, backend compute layer, vector store, and model components.
+
 ---
 
-## Dataset
+## 3. Dataset
 
 This project uses the **LearningQ Dataset** (Chen et al., 2018) as the foundation for educational question generation and flashcard construction.
 
@@ -33,7 +41,63 @@ This dataset forms the backbone of StudyMate’s ability to create context-aware
 
 ---
 
-## High-Level Architecture
+## 4. Model Training Methodology
+
+The educational question-generation model was trained using **microsoft/phi-3-mini-4k-instruct** with supervised fine-tuning and LoRA.
+
+### 4.1 Base Model
+
+- Model: Phi-3 Mini 4K Instruct  
+- Chosen for efficiency, strong instruction-following, and suitability for educational tasks.
+
+### 4.2 Prompt Format
+
+Each LearningQ sample is transformed into a prompt–answer pair:
+
+```
+You are an educational question generator.
+Write ONE clear, student-friendly question based only on the passage.
+
+Passage:
+{input}
+
+Question:
+```
+
+### 4.3 Tokenization Strategy
+
+- Minimum 40 percent of token window reserved for answer.  
+- Long passages trimmed from the left while preserving context.  
+- Output aligned with supervised training mask (`labels != -100`).  
+
+### 4.4 LoRA Training
+
+LoRA Configuration:
+- r = 16  
+- alpha = 32  
+- dropout = 0.05  
+- Applied to q_proj, k_proj, v_proj, o_proj  
+
+Optimizer:
+- AdamW (or paged AdamW when quantized)
+
+### 4.5 Training Arguments
+
+- Batch size: 1  
+- Gradient accumulation: 2  
+- Learning rate: 2e-4  
+- Logging steps: 10  
+- Training: 1 epoch  
+
+Adapters saved to:
+
+```
+outputs/phi3-learningq/lora/
+```
+
+---
+
+## Project Breakdown
 
 StudyMate contains four major layers:
 
@@ -160,7 +224,7 @@ This project was completed as part of the Master of Science degree at the Roches
 
 Special thanks to:
 - **Nick Snyder** — Project Committee Chair  
-- **Zhiqiang Tao** — Assistant Professor  
+- **Zhiqiang Tao** — Project Committee Co-Chair  
 - The LearningQ dataset authors  
 - The open‑source community supporting ChromaDB, Sentence‑Transformers, and the Hugging Face ecosystem  
 
