@@ -31,7 +31,7 @@ export default function FlashcardView({
     <div className="fc-page">
 
       {/* Back button */}
-        <button className="fc-back" onClick={onBack}>
+        <button className="fc-back-button" onClick={onBack}>
             <FiArrowLeft size={20} />
         </button>
 

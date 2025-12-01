@@ -548,12 +548,34 @@
   color: #4a3729;
   z-index: 2;
 }
-/* 
-.fc-front .flashcard-body {
-  color: #4a3729 !important;
-} */
 
 .fc-back {
+  background: #fffaf2;
+  color: #3f2d20;
+  transform: rotateY(180deg);
+}
+
+.fc-back-button {
+    position: absolute;
+  top: 22px;
+  left: 22px;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f59e0b; /* orange */
+  color: white;
+
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(240, 146, 40, 0.25);
+
+  z-index: 20;
   background: #fffaf2;
   color: #3f2d20;
 }
