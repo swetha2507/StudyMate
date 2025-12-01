@@ -232,9 +232,6 @@ Special thanks to:
 
 ## References
 
-(APA style — matching proposal)  
-fileciteturn0file0
-
 Boateng, G., John, S., Glago, A., Boateng, S., & Kumbol, V. (2022). *Kwame for science: An AI teaching assistant based on Sentence-BERT*. International Conference on Intelligent Technologies and Applications (ITBA).
 
 Boyce, P. (2019). *Schools are outdated. It’s time for reform*. The Epoch Times.
